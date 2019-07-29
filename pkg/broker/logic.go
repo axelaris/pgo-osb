@@ -157,7 +157,7 @@ func (b *BusinessLogic) Provision(request *osb.ProvisionRequest, c *broker.Reque
 	log.Println("provision PGO_APISERVER_URL=" + b.PGO_APISERVER_URL)
 	log.Println("provision PGO_APISERVER_VERSION=" + b.PGO_APISERVER_VERSION)
 
-	pgocmd.CreateCluster(b.PGO_APISERVER_URL, request.Parameters["PGO_USERNAME"].(string), request.Parameters["PGO_PASSWORD"].(string), request.Parameters["PGO_CLUSTERNAME"].(string), b.PGO_APISERVER_VERSION, request.InstanceID, request.Parameters["PGO_NAMESPACE"].(string))
+	pgocmd.CreateCluster(b.PGO_APISERVER_URL, request.Parameters["PGO_USERNAME"].(string), request.Parameters["PGO_PASSWORD"].(string), request.Parameters["PGO_CLUSTERNAME"].(string), b.PGO_APISERVER_VERSION, request.InstanceID, request.Parameters["PGO_NAMESPACE"].(string), request.Parameters["PGO_AF"].(bool), int(request.Parameters["PGO_REPLICAS"].(float64)))
 	return &response, nil
 }
 
