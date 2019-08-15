@@ -150,7 +150,7 @@ func DeleteCluster(APIServerURL, basicAuthUsername, basicAuthPassword, clientVer
 }
 
 // CreateCluster ....
-func CreateCluster(APIServerURL, BasicAuthUsername, BasicAuthPassword, clusterName, clientVersion, instanceID, namespace string, AutofailFlag bool, ReplicaCount int) error {
+func CreateCluster(APIServerURL, ServiceType, NodeLabel, StorageConfig, ReplicaStorageConfig, BasicAuthUsername, BasicAuthPassword, clusterName, clientVersion, instanceID, namespace string, AutofailFlag bool, ReplicaCount int) error {
 	var err error
 
 	r := new(msgs.CreateClusterRequest)
@@ -168,6 +168,11 @@ func CreateCluster(APIServerURL, BasicAuthUsername, BasicAuthPassword, clusterNa
 	//r.MetricsFlag = MetricsFlag
 	r.AutofailFlag = AutofailFlag
 	r.ReplicaCount = ReplicaCount
+	r.BackrestFlag = "false"
+	r.NodeLabel = NodeLabel
+	r.StorageConfig = StorageConfig
+	r.ReplicaStorageConfig = ReplicaStorageConfig
+	r.ServiceType = ServiceType
 	//r.PgpoolFlag = PgpoolFlag
 	//r.ArchiveFlag = ArchiveFlag
 	//r.PgpoolSecret = PgpoolSecret

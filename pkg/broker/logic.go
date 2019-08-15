@@ -153,11 +153,12 @@ func (b *BusinessLogic) Provision(request *osb.ProvisionRequest, c *broker.Reque
 	log.Println("provision PGO_USERNAME=" + request.Parameters["PGO_USERNAME"].(string))
 	log.Println("provision PGO_PASSWORD=" + request.Parameters["PGO_PASSWORD"].(string))
 	log.Println("provision PGO_CLUSTERNAME=" + request.Parameters["PGO_CLUSTERNAME"].(string))
+    log.Println("provision version 9")
 
 	log.Println("provision PGO_APISERVER_URL=" + b.PGO_APISERVER_URL)
 	log.Println("provision PGO_APISERVER_VERSION=" + b.PGO_APISERVER_VERSION)
 
-	pgocmd.CreateCluster(b.PGO_APISERVER_URL, request.Parameters["PGO_USERNAME"].(string), request.Parameters["PGO_PASSWORD"].(string), request.Parameters["PGO_CLUSTERNAME"].(string), b.PGO_APISERVER_VERSION, request.InstanceID, request.Parameters["PGO_NAMESPACE"].(string), request.Parameters["PGO_AF"].(bool), int(request.Parameters["PGO_REPLICAS"].(float64)))
+	pgocmd.CreateCluster(b.PGO_APISERVER_URL, request.Parameters["PGO_SERVICE_TYPE"].(string), request.Parameters["PGO_NODELABEL"].(string), request.Parameters["PGO_STORAGE"].(string), request.Parameters["PGO_BACKEND_STORAGE"].(string), request.Parameters["PGO_USERNAME"].(string), request.Parameters["PGO_PASSWORD"].(string), request.Parameters["PGO_CLUSTERNAME"].(string), b.PGO_APISERVER_VERSION, request.InstanceID, request.Parameters["PGO_NAMESPACE"].(string), request.Parameters["PGO_AF"].(bool), int(request.Parameters["PGO_REPLICAS"].(float64)))
 	return &response, nil
 }
 
