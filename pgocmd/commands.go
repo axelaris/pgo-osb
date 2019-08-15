@@ -45,7 +45,7 @@ func GetClusterCredentials(APIServerURL, basicAuthUsername, basicAuthPassword, c
 	var detail *msgs.ShowClusterDetail
 	fmt.Printf("fmt ShowCluster called %s\n", instanceID)
 	log.Printf("ShowCluster called %s\n", instanceID)
-	selector := INSTANCE_LABEL_KEY + "=" + instanceID
+	selector := INSTANCE_LABEL_KEY + "=a" + instanceID
 
 	clusterName := "all"
 	log.Print("show cluster " + selector)
@@ -108,7 +108,7 @@ func GetClusterCredentials(APIServerURL, basicAuthUsername, basicAuthPassword, c
 // DeleteCluster ...
 func DeleteCluster(APIServerURL, basicAuthUsername, basicAuthPassword, clientVersion, instanceID string) error {
 	log.Printf("deleteCluster called %s\n", instanceID)
-	selector := INSTANCE_LABEL_KEY + "=" + instanceID
+	selector := INSTANCE_LABEL_KEY + "=a" + instanceID
 
 	clusterName := "all"
 	deleteData := false
@@ -159,7 +159,7 @@ func CreateCluster(APIServerURL, ServiceType, NodeLabel, StorageConfig, ReplicaS
 	//r.Password = Password
 	//r.SecretFrom = SecretFrom
 	//r.BackupPVC = BackupPVC
-	r.UserLabels = INSTANCE_LABEL_KEY + "=" + instanceID
+	r.UserLabels = INSTANCE_LABEL_KEY + "=a" + instanceID
 	log.Println("user label applied is [" + r.UserLabels + "]")
 	//r.BackupPath = BackupPath
 	//r.Policies = PoliciesFlag
